@@ -13,12 +13,31 @@
             --secondary: #10b981;
             --danger: #ef4444;
             --warning: #f59e0b;
+            
+            /* Light Theme Variables */
             --bg-color: #f3f4f6;
             --card-bg: #ffffff;
             --text-main: #1f2937;
             --text-muted: #6b7280;
-            --border-radius: 16px;
+            --border-color: #e5e7eb;
+            --table-hover: #f3f4f6;
+            --table-header-bg: #f9fafb;
+            --tag-bg: #f3f4f6;
             --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --border-radius: 16px;
+        }
+
+        /* Dark Theme Variables */
+        body.dark-mode {
+            --bg-color: #111827;
+            --card-bg: #1f2937;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border-color: #374151;
+            --table-hover: #374151;
+            --table-header-bg: #111827;
+            --tag-bg: #374151;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
         }
 
         body {
@@ -27,17 +46,45 @@
             margin: 0;
             padding: 30px 20px;
             color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
             max-width: 1280px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 10px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .header {
             text-align: center;
             margin-bottom: 40px;
             animation: fadeInDown 0.6s ease-out;
+            padding-top: 20px;
         }
 
         .header h1 {
@@ -46,12 +93,14 @@
             margin-bottom: 8px;
             font-weight: 700;
             letter-spacing: -0.5px;
+            transition: color 0.3s ease;
         }
 
         .header p {
             color: var(--text-muted);
             font-size: 1.1rem;
             margin-top: 0;
+            transition: color 0.3s ease;
         }
 
         /* Modern Tabs */
@@ -113,7 +162,7 @@
             text-align: left;
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .card:hover {
@@ -140,6 +189,7 @@
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
 
         .card p {
@@ -147,6 +197,7 @@
             font-size: 36px;
             font-weight: 700;
             color: var(--text-main);
+            transition: color 0.3s ease;
         }
 
         /* Charts Grid */
@@ -166,6 +217,7 @@
             flex-direction: column;
             align-items: center;
             overflow-x: auto;
+            transition: background-color 0.3s ease;
         }
 
         .chart-container h3 {
@@ -174,6 +226,7 @@
             font-size: 1.1rem;
             margin-bottom: 20px;
             align-self: flex-start;
+            transition: color 0.3s ease;
         }
 
         .full-width {
@@ -195,19 +248,21 @@
         .data-table th, .data-table td {
             padding: 14px 15px;
             text-align: left;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color 0.3s ease;
         }
         
         .data-table th {
             color: var(--text-muted);
             font-size: 13px;
             text-transform: uppercase;
-            background-color: #f9fafb;
+            background-color: var(--table-header-bg);
             font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .data-table tr:hover {
-            background-color: #f3f4f6;
+            background-color: var(--table-hover);
         }
 
         .data-table tr:last-child td {
@@ -222,8 +277,8 @@
             font-weight: 600;
         }
 
-        .badge-success { background-color: #ecfdf5; color: #065f46; border: 1px solid #34d399; }
-        .badge-warning { background-color: #fffbeb; color: #b45309; border: 1px solid #fbbf24; }
+        .badge-success { background-color: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.5); }
+        .badge-warning { background-color: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.5); }
         
         .kw-section-title {
             margin: 30px 0 15px 0;
@@ -231,6 +286,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: color 0.3s ease;
         }
 
         @keyframes fadeIn {
@@ -245,12 +301,19 @@
 
         @media (max-width: 900px) {
             .charts-grid { grid-template-columns: 1fr; }
+            .theme-toggle { position: relative; display: table; margin: 0 auto 20px auto; }
+            .header { padding-top: 0; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    
+    <button class="theme-toggle" id="themeToggle">
+        <span id="themeIcon">🌙</span> <span id="themeText">Dark Mode</span>
+    </button>
+
     <div class="header">
         <h1>✨ სტომატოლოგიური კლინიკა - Google Ads</h1>
         <p>საანგარიშო პერიოდი: 1 აპრილი, 2026 - 27 მაისი, 2026</p>
@@ -331,26 +394,26 @@
                     <tbody>
                         <tr>
                             <td style="text-align: center; font-size: 20px;">📞</td>
-                            <td><strong>Phone Call Click</strong><br><span style="font-size:12px; color:#6b7280;">პირდაპირ ნომერზე დარეკვა</span></td>
+                            <td><strong>Phone Call Click</strong><br><span style="font-size:12px; color:var(--text-muted);">პირდაპირ ნომერზე დარეკვა</span></td>
                             <td>38</td>
                             <td>~ 49%</td>
                         </tr>
                         <tr>
                             <td style="text-align: center; font-size: 20px;">💬</td>
-                            <td><strong>WhatsApp Click</strong><br><span style="font-size:12px; color:#6b7280;">აპლიკაციაში გადასვლა</span></td>
+                            <td><strong>WhatsApp Click</strong><br><span style="font-size:12px; color:var(--text-muted);">აპლიკაციაში გადასვლა</span></td>
                             <td>34</td>
                             <td>~ 43%</td>
                         </tr>
                         <tr>
                             <td style="text-align: center; font-size: 20px;">✈️</td>
-                            <td><strong>Telegram Click</strong><br><span style="font-size:12px; color:#6b7280;">ტელეგრამში მიწერა</span></td>
+                            <td><strong>Telegram Click</strong><br><span style="font-size:12px; color:var(--text-muted);">ტელეგრამში მიწერა</span></td>
                             <td>6</td>
                             <td>~ 8%</td>
                         </tr>
                     </tbody>
                 </table>
                 <p style="margin-top:20px; font-size:14px; color:var(--text-muted); line-height:1.6;">
-                    * <strong>შენიშვნა:</strong> განახლებული ჯამური 78 კონვერსიის მიხედვით, გადანაწილება შენარჩუნებულია წინა ტენდენციის პროპორციულად (ძირითადი ნაწილი კვლავ ზარებზე და WhatsApp-ზე მოდის).
+                    * <strong>შენიშვნა:</strong> განახლებული ჯამური 78 კონვერსიის მიხედვით, გადანაწილება შენარჩუნებულია წინა ტენდენციის პროპორციულად.
                 </p>
             </div>
         </div>
@@ -396,7 +459,7 @@
                         <tr>
                             <td><strong>metreveli dental center</strong></td>
                             <td><span class="badge badge-success">7.00</span></td>
-                            <td><strong style="color: #059669;">18.42%</strong></td>
+                            <td><strong style="color: #10b981;">18.42%</strong></td>
                             <td>$2.65</td>
                             <td>38</td>
                             <td>86</td>
@@ -423,7 +486,7 @@
                         <tr>
                             <td><strong>kids dental clinic tbilisi</strong></td>
                             <td><span class="badge badge-success">3.00</span></td>
-                            <td><strong style="color: #059669;">30.00%</strong></td>
+                            <td><strong style="color: #10b981;">30.00%</strong></td>
                             <td>$4.17</td>
                             <td>10</td>
                             <td>23</td>
@@ -516,7 +579,7 @@
                         <tr>
                             <td><strong>детский стоматолог тбилиси</strong></td>
                             <td><span class="badge badge-success">2.00</span></td>
-                            <td><strong style="color: #059669;">100.00%</strong></td>
+                            <td><strong style="color: #10b981;">100.00%</strong></td>
                             <td>$0.63</td>
                             <td>2</td>
                             <td>19</td>
@@ -558,115 +621,120 @@
         event.currentTarget.classList.add('active');
     }
 
-    // Common Chart Options
+    // Common Chart Config
     Chart.defaults.font.family = "'Noto Sans Georgian', sans-serif";
     Chart.defaults.color = '#6b7280';
+    let gridColor = '#f3f4f6';
 
-    // 1. Doughnut Chart (Ad Groups)
-    new Chart(document.getElementById('convPieChart').getContext('2d'), {
-        type: 'doughnut',
-        data: {
-            labels: ['ინგლისური (EN)', 'რუსული (RU)'],
-            datasets: [{
-                data: [57, 21],
-                backgroundColor: ['#4f46e5', '#ef4444'],
-                borderWidth: 0,
-                hoverOffset: 4
-            }]
-        },
-        options: { 
-            responsive: true, 
-            maintainAspectRatio: false,
-            plugins: { 
-                legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } }
+    // Chart Instances
+    let convPieChart, costClicksChart, keywordsChart, actionsChart;
+
+    function initCharts() {
+        // 1. Doughnut Chart (Ad Groups)
+        convPieChart = new Chart(document.getElementById('convPieChart').getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['ინგლისური (EN)', 'რუსული (RU)'],
+                datasets: [{
+                    data: [57, 21],
+                    backgroundColor: ['#4f46e5', '#ef4444'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
             },
-            cutout: '65%'
-        }
-    });
+            options: { 
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } } },
+                cutout: '65%'
+            }
+        });
 
-    // 2. Bar Chart (Cost vs Clicks)
-    new Chart(document.getElementById('costClicksChart').getContext('2d'), {
-        type: 'bar',
-        data: {
-            labels: ['ინგლისური (EN)', 'რუსული (RU)'],
-            datasets: [
-                {
-                    label: 'დანახარჯი ($)',
-                    data: [582.47, 264.40],
-                    backgroundColor: '#f59e0b',
-                    borderRadius: 6
-                },
-                {
-                    label: 'კლიკები',
-                    data: [846, 379],
-                    backgroundColor: '#10b981',
-                    borderRadius: 6
+        // 2. Bar Chart (Cost vs Clicks)
+        costClicksChart = new Chart(document.getElementById('costClicksChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['ინგლისური (EN)', 'რუსული (RU)'],
+                datasets: [
+                    { label: 'დანახარჯი ($)', data: [582.47, 264.40], backgroundColor: '#f59e0b', borderRadius: 6 },
+                    { label: 'კლიკები', data: [846, 379], backgroundColor: '#10b981', borderRadius: 6 }
+                ]
+            },
+            options: { 
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } },
+                scales: { 
+                    y: { beginAtZero: true, grid: { color: gridColor } }, 
+                    x: { grid: { display: false } } 
                 }
-            ]
-        },
-        options: { 
-            responsive: true, 
-            maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } },
-            scales: { y: { beginAtZero: true, grid: { color: '#f3f4f6' } }, x: { grid: { display: false } } }
-        }
-    });
-
-    // 3. Horizontal Bar (Keywords)
-    new Chart(document.getElementById('keywordsChart').getContext('2d'), {
-        type: 'bar',
-        data: {
-            labels: [
-                'dentist tbilisi (EN)', 
-                'dental clinic (EN)', 
-                'стоматология тбилиси (RU)', 
-                'metreveli dental center (EN)', 
-                'dental clinic near me (EN)', 
-                'teeth whitening (EN)',
-                'стоматологические клиники тбилиси (RU)'
-            ],
-            datasets: [{
-                label: 'კონვერსიები',
-                data: [20, 14, 8, 7, 6, 4, 3],
-                backgroundColor: 'rgba(79, 70, 229, 0.8)',
-                borderRadius: 4
-            }]
-        },
-        options: { 
-            indexAxis: 'y', 
-            responsive: true, 
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: { 
-                x: { beginAtZero: true, grid: { color: '#f3f4f6' } },
-                y: { grid: { display: false } }
             }
-        }
-    });
+        });
 
-    // 4. Polar Area Chart (Conversion Actions)
-    new Chart(document.getElementById('actionsChart').getContext('2d'), {
-        type: 'polarArea',
-        data: {
-            labels: ['Phone Call', 'WhatsApp', 'Telegram'],
-            datasets: [{
-                data: [38, 34, 6],
-                backgroundColor: [
-                    'rgba(52, 211, 153, 0.7)', // green
-                    'rgba(59, 130, 246, 0.7)', // blue
-                    'rgba(139, 92, 246, 0.7)'  // purple
-                ],
-                borderWidth: 2,
-                borderColor: '#ffffff'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } }
+        // 3. Horizontal Bar (Keywords)
+        keywordsChart = new Chart(document.getElementById('keywordsChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['dentist tbilisi', 'dental clinic', 'стоматология тбилиси', 'metreveli dental center', 'dental clinic near me', 'teeth whitening', 'стоматологические клиники'],
+                datasets: [{ label: 'კონვერსიები', data: [20, 14, 8, 7, 6, 4, 3], backgroundColor: 'rgba(79, 70, 229, 0.8)', borderRadius: 4 }]
+            },
+            options: { 
+                indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { 
+                    x: { beginAtZero: true, grid: { color: gridColor } },
+                    y: { grid: { display: false } }
+                }
             }
-        }
+        });
+
+        // 4. Polar Area Chart (Actions)
+        actionsChart = new Chart(document.getElementById('actionsChart').getContext('2d'), {
+            type: 'polarArea',
+            data: {
+                labels: ['Phone Call', 'WhatsApp', 'Telegram'],
+                datasets: [{
+                    data: [38, 34, 6],
+                    backgroundColor: ['rgba(16, 185, 129, 0.7)', 'rgba(59, 130, 246, 0.7)', 'rgba(139, 92, 246, 0.7)'],
+                    borderWidth: 2, borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } } },
+                scales: { r: { grid: { color: gridColor } } }
+            }
+        });
+    }
+
+    initCharts();
+
+    // Dark Mode Logic
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        
+        // Update Button
+        themeIcon.textContent = isDark ? '☀️' : '🌙';
+        themeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+
+        // Update Chart Colors Dynamically
+        Chart.defaults.color = isDark ? '#9ca3af' : '#6b7280';
+        const newGridColor = isDark ? '#374151' : '#f3f4f6';
+
+        // Update grid lines
+        costClicksChart.options.scales.y.grid.color = newGridColor;
+        keywordsChart.options.scales.x.grid.color = newGridColor;
+        actionsChart.options.scales.r.grid.color = newGridColor;
+        actionsChart.data.datasets[0].borderColor = isDark ? '#1f2937' : '#ffffff';
+
+        // Re-render
+        convPieChart.update();
+        costClicksChart.update();
+        keywordsChart.update();
+        actionsChart.update();
     });
 </script>
 
